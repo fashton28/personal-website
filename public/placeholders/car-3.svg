@@ -1,0 +1,12 @@
+<svg width="720" height="900" viewBox="0 0 720 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g3" x1="0" y1="0" x2="720" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#AA6C39"/>
+      <stop offset="1" stop-color="#18110A"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="900" fill="url(#g3)"/>
+  <path d="M40 700C240 540 430 780 680 580" stroke="#fff" stroke-opacity="0.3" stroke-width="20"/>
+  <path d="M40 540C250 380 450 610 680 420" stroke="#fff" stroke-opacity="0.2" stroke-width="12"/>
+  <text x="120" y="820" fill="#ffffff" font-family="Arial, sans-serif" font-size="44">Placeholder 03</text>
+</svg>

@@ -1,0 +1,12 @@
+<svg width="720" height="900" viewBox="0 0 720 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g4" x1="0" y1="0" x2="720" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8B3E7B"/>
+      <stop offset="1" stop-color="#1A1021"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="900" fill="url(#g4)"/>
+  <circle cx="500" cy="230" r="160" fill="#ffffff12"/>
+  <rect x="120" y="500" width="480" height="220" rx="30" fill="#ffffff20"/>
+  <text x="160" y="630" fill="#ffffff" font-family="Arial, sans-serif" font-size="44">Placeholder 04</text>
+</svg>
