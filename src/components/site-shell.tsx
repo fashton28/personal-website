@@ -171,9 +171,9 @@ export function SiteShell() {
 
   return (
     <>
-      <main className="relative mx-auto w-full max-w-[780px] px-5 pb-28 pt-7 sm:px-9 sm:pt-10 lg:px-10 lg:pt-12">
-        <div className="space-y-20">
-          <div className="space-y-8">
+      <main className="relative mx-auto flex h-dvh w-full max-w-[780px] flex-col overflow-hidden px-5 pb-14 pt-4 sm:px-9 sm:pt-6 lg:px-10 lg:pt-7">
+        <div className="flex flex-1 flex-col justify-between gap-4">
+          <div className="space-y-5">
             <HeaderSection clockLabel={clockLabel} copied={copied} />
             <SocialsSection />
             <ProjectsSection />

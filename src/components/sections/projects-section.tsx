@@ -1,24 +1,31 @@
 export function ProjectsSection() {
+
   return (
-    <section id="projects" aria-labelledby="projects-title" className="relative space-y-6">
+
+    <section id="projects" aria-labelledby="projects-title" className="relative space-y-3">
+
       <p className="section-label">Work</p>
 
       <button
         type="button"
-        className="relative flex h-[95px] w-full items-center justify-center overflow-hidden rounded-[28px] border border-border/70 bg-[#080a0f] shadow-[0_20px_70px_rgba(0,0,0,0.45)] transition-all duration-200 hover:border-white/20 hover:bg-white/[0.1] hover:-translate-y-0.5 active:translate-y-0"
+        className="relative flex h-[72px] w-full items-center justify-center overflow-hidden rounded-[22px] bg-[#080a0f] text-[0.85rem] shadow-[0px_32px_64px_-16px_#0000004c,0px_16px_32px_-8px_#0000004c,0px_8px_16px_-4px_#0000003d,0px_4px_8px_-2px_#0000003d,0px_-8px_16px_-1px_#00000029,0px_2px_4px_-1px_#0000003d,0px_0px_0px_1px_#000000,inset_0px_0px_0px_1px_#ffffff14,inset_0px_1px_0px_#ffffff33] transition-all duration-200 hover:bg-black hover:-translate-y-0.5 active:translate-y-0 group"
       >
         <div
           aria-hidden
-          className="absolute inset-0 opacity-60 [background-image:radial-gradient(#293041_1px,transparent_1px)] [background-size:10px_10px]"
+          className="absolute inset-0 opacity-60 [background-image:radial-gradient(#293041_1px,transparent_1px)] [background-size:10px_10px] group-hover:opacity-0"
         />
-        <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#080a0f]" />
-          Cool stuff I&apos;ve built
+        Cool stuff I&apos;ve built
       </button>
     </section>
+
   );
+
 }
 
 export const projectsSectionMeta = {
+
   id: "projects",
-  title: "Projects"
+
+  title: "Projects",
+
 };

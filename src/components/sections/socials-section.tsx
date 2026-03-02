@@ -6,26 +6,26 @@ export const socialLinks: SocialLinkItem[] = [
   {
     id: "social-email",
     label: "Email",
-    value: "hi@jacobvos.com",
-    href: "mailto:hi@jacobvos.com"
+    value: "fashton502@gmail.com",
+    href: "mailto:fashton502@gmail.com"
   },
   {
     id: "social-x",
     label: "X.com",
     value: "@jacob",
-    href: "https://x.com/jacob"
+    href: "https://x.com/FabianBuiltIt"
   },
   {
     id: "social-github",
     label: "GitHub",
     value: "@jv",
-    href: "https://github.com/jv"
+    href: "https://github.com/fashton28"
   },
   {
     id: "social-linkedin",
     label: "LinkedIn",
     value: "/in/jacobvos",
-    href: "https://linkedin.com/in/jacobvos"
+    href: "https://www.linkedin.com/in/fabian-ashton-b21b772ba/"
   }
 ];
 
