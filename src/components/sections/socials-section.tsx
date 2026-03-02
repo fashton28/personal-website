@@ -43,7 +43,7 @@ export function SocialsSection() {
         Social links
       </h2>
 
-      <ul className="flex flex-wrap items-center gap-4">
+      <ul className="flex flex-wrap items-center justify-center gap-4 sm:justify-start">
         {socialLinks.map((link) => {
           const Icon = iconMap[link.label as keyof typeof iconMap] ?? Mail;
 

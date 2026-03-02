@@ -3,6 +3,7 @@ export interface ProjectItem {
   title: string;
   summary: string;
   tags: string[];
+  image: string;
   anchorId: string;
 }
 

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Manrope } from "next/font/google";
 
+import BottomNav from "@/components/bottom-nav";
+import { GlobalCommand } from "@/components/global-command";
 import "./globals.css";
 
 const sans = Manrope({
@@ -28,7 +30,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sans.variable} ${mono.variable} antialiased`}>{children}</body>
+      <body className={`${sans.variable} ${mono.variable} antialiased`}>
+        {children}
+        <GlobalCommand />
+        <BottomNav />
+      </body>
     </html>
   );
 }

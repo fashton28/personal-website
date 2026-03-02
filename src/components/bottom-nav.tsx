@@ -1,16 +1,17 @@
 "use client"
 
-import { useState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Home, FolderKanban, PenTool } from "lucide-react"
 
 const navItems = [
-  { icon: Home, label: "Home" },
-  { icon: FolderKanban, label: "Projects" },
-  { icon: PenTool, label: "Writing" },
+  { icon: Home, label: "Home", href: "/" },
+  { icon: FolderKanban, label: "Projects", href: "/projects" },
+  { icon: PenTool, label: "Writing", href: "#" },
 ]
 
 export default function BottomNav() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const pathname = usePathname()
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))]">
@@ -19,22 +20,23 @@ export default function BottomNav() {
         role="toolbar"
         aria-label="Navigation toolbar"
       >
-      {navItems.map((item, index) => {
+      {navItems.map((item) => {
         const Icon = item.icon
+        const isActive = pathname === item.href
         return (
-          <button
+          <Link
             key={item.label}
-            onClick={() => setActiveIndex(index)}
+            href={item.href}
             className={[
               "relative flex h-8 w-8 items-center justify-center rounded-full transition-colors duration-200",
-              activeIndex === index
+              isActive
                 ? "bg-white/15 text-white"
                 : "text-white/60 hover:bg-white/10 hover:text-white",
             ].join(" ")}
             aria-label={item.label}
           >
             <Icon className="h-4 w-4" strokeWidth={1.5} />
-          </button>
+          </Link>
         )
       })}
       </nav>
