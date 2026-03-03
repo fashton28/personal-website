@@ -20,7 +20,6 @@ export interface WritingItem {
   id: string;
   date: string;
   title: string;
-  readMinutes: number;
   anchorId: string;
 }
 

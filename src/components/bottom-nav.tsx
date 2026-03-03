@@ -7,7 +7,7 @@ import { Home, FolderKanban, PenTool } from "lucide-react"
 const navItems = [
   { icon: Home, label: "Home", href: "/" },
   { icon: FolderKanban, label: "Projects", href: "/projects" },
-  { icon: PenTool, label: "Writing", href: "#" },
+  { icon: PenTool, label: "Writing", href: "/writing" },
 ]
 
 export default function BottomNav() {
