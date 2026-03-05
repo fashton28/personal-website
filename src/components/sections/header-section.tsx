@@ -14,6 +14,18 @@ interface HeaderSectionProps {
 export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
   return (
     <header id="header" className="relative space-y-3" aria-labelledby="header-title">
+      <style jsx>{`
+        .rotate-on-hover-parent:hover .rotate-on-hover {
+          transform: rotate(45deg);
+        }
+        .rotate-on-hover {
+          transition: transform 0.2s;
+          display: inline-block;
+        }
+        .bold-underline {
+          font-weight: bold;
+        }
+      `}</style>
       <div className="flex items-center justify-between">
         <p className="inline-flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-muted">
           <Clock3 className="h-3 w-3" />
@@ -34,18 +46,17 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
         <CmdKButton />
       </div>
 
-
       <div className="space-y-2.5 text-[0.85rem] leading-relaxed text-[#d5d9e3]">
         <ul className="space-y-1">
           <li className="flex gap-2">
             <span className="ml-1 text-[0.65rem]">◆</span>
             <span>
-              Engineering <span aria-hidden>🌐</span>{" "}
+              Working on <span aria-hidden>🌐</span>{" "}
               <span className="underline underline-offset-2 decoration-white/70">ModulrLabs</span>
             </span>
           </li>
-          <li className="flex gap-2">
-            <span className="ml-1 text-[0.65rem]">■</span>
+          <li className="flex gap-2 rotate-on-hover-parent">
+            <span className="ml-1 text-[0.65rem] rotate-on-hover">■</span>
             <span className="flex items-center gap-1">
               CS @
               <span className="flex items-center gap-1">
@@ -68,24 +79,26 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
             • what I&apos;ve been building:
           </p>
           <ul className="space-y-0.5">
-            <li className="flex gap-2 transition-transform duration-200 hover:translate-x-1">
+            <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
               <span className="ml-1 text-[0.65rem]">↳</span>
               <span>
-                created <span className="font-semibold" style={{ color: "#ff66c4" }}>Cursor for 3D modeling</span> (3M+ views, 1,900+ stars,
-                inbound VC interest from Sequoia, a16z, GC, others)
+                created the <span className="font-semibold" style={{ color: "#ff66c4", fontWeight: "bold" }}><b>Cursor for interview prep</b></span> (Built for the <i>AI Presidential Challenge</i>)
               </span>
             </li>
-            <li className="flex gap-2 transition-transform duration-200 hover:translate-x-1">
+            <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
               <span className="ml-1 text-[0.65rem]">↳</span>
-              <span>shipped a product in &lt; 2 days to 10,000+ users</span>
+              <span>
+                shipped a product in &lt; 8 hours in front of{" "}
+                <span className="font-semibold" style={{ color: "#ff66c4", fontWeight: "bold" }}><b>Miami VCs</b></span>
+              </span>
             </li>
-            <li className="flex gap-2 transition-transform duration-200 hover:translate-x-1">
+            <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
               <span className="ml-1 text-[0.65rem]">↳</span>
-              <span>did it again with another product (1,000+ users in &lt; 24 hours)</span>
+              <span>did it again with another product (got engineering offers & VC inbound interest)</span>
             </li>
-            <li className="flex gap-2 transition-transform duration-200 hover:translate-x-1">
+            <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
               <span className="ml-1 text-[0.65rem]">↳</span>
-              <span>built a deep learning framework from scratch in C++</span>
+              <span>building particle simulation framework from scratch in C++</span>
             </li>
           </ul>
         </div>
@@ -93,32 +106,26 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
         <div className="space-y-1">
           <p className="font-mono text-[0.78rem] italic text-[#b5bac7]">• previously:</p>
           <ul className="space-y-0.5">
-            <li className="flex gap-2 transition-transform duration-200 hover:translate-x-1">
+            <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
               <span className="ml-1 text-[0.65rem]">↳</span>
               <span>
-                Engineering <span aria-hidden>🛍</span>{" "}
-                <span className="underline underline-offset-2 decoration-white/70">Shopify</span>
+                Founded <span aria-hidden>🛍</span>{" "}
+                <span className="underline underline-offset-2 decoration-white/70 bold-underline">marketing company </span>
+                at 15
               </span>
             </li>
-            <li className="flex gap-2 transition-transform duration-200 hover:translate-x-1">
+            <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
               <span className="ml-1 text-[0.65rem]">↳</span>
               <span>
-                Engineering <span aria-hidden>🧪</span>{" "}
-                <span className="underline underline-offset-2 decoration-white/70">Browserbase</span>
+                Obsidian <span aria-hidden>🧪</span>{" "}
+                <span className="underline underline-offset-2 decoration-white/70 bold-underline">plugins</span>
               </span>
             </li>
-            <li className="flex gap-2 transition-transform duration-200 hover:translate-x-1">
-              <span className="ml-1 text-[0.65rem]">↳</span>
-              <span>
-                ML research <span aria-hidden>🏥</span>{" "}
-                <span className="underline underline-offset-2 decoration-white/70">Sunnybrook</span>
-              </span>
-            </li>
-            <li className="flex gap-2 transition-transform duration-200 hover:translate-x-1">
+            <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
               <span className="ml-1 text-[0.65rem]">↳</span>
               <span>
                 Research <span aria-hidden>🎓</span>{" "}
-                <span className="underline underline-offset-2 decoration-white/70">UWaterloo</span>
+                <span className="underline underline-offset-2 decoration-white/70 bold-underline">NASA ORBIT</span>
               </span>
             </li>
           </ul>
