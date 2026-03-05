@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Clock3 } from "lucide-react";
+import { CmdKButton } from "@/components/cmd-k-button";
 
 const EMAIL = "hi@jacobvos.com";
 
@@ -20,14 +21,19 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
         </p>
       </div>
 
-      <div className="flex items-start gap-4">
+      <div className="flex items-start justify-between gap-3">
         <div>
-          <h1 id="header-title" className="inline-flex items-center gap-2 text-[1.55rem] font-semibold tracking-tight text-text sm:text-[1.7rem]">
+          <h1
+            id="header-title"
+            className="inline-flex items-center gap-2 text-[1.55rem] font-semibold tracking-tight text-text sm:text-[1.7rem]"
+          >
             Fabian Ashton
           </h1>
           <p className="mt-0.5 text-[0.92rem] text-muted">Engineer and entrepreneur</p>
         </div>
+        <CmdKButton />
       </div>
+
 
       <div className="space-y-2.5 text-[0.85rem] leading-relaxed text-[#d5d9e3]">
         <ul className="space-y-1">

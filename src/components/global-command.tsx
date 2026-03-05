@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-import { CmdKButton } from "@/components/cmd-k-button";
 import { CommandPalette } from "@/components/command-palette";
 import { headerSectionMeta, siteEmail } from "@/components/sections/header-section";
 import { projectsSectionMeta } from "@/components/sections/projects-section";
@@ -129,15 +128,18 @@ export function GlobalCommand() {
       }
     };
 
+    const onOpenRequest = () => setOpen(true);
+
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    window.addEventListener("open-command-palette", onOpenRequest);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("open-command-palette", onOpenRequest);
+    };
   }, []);
 
   return (
     <>
-      <div className="fixed right-5 top-5 z-50">
-        <CmdKButton onClick={() => setOpen(true)} />
-      </div>
       <CommandPalette
         open={open}
         onOpenChange={setOpen}

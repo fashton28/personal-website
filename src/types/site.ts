@@ -16,13 +16,6 @@ export interface WorkUpdateItem {
   anchorId: string;
 }
 
-export interface WritingItem {
-  id: string;
-  date: string;
-  title: string;
-  anchorId: string;
-}
-
 export interface SocialLinkItem {
   id: string;
   label: string;
