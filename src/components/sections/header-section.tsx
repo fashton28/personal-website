@@ -48,13 +48,6 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
 
       <div className="space-y-2.5 text-[0.85rem] leading-relaxed text-[#d5d9e3]">
         <ul className="space-y-1">
-          <li className="flex gap-2">
-            <span className="ml-1 text-[0.65rem]">◆</span>
-            <span>
-              Working on <span aria-hidden>🌐</span>{" "}
-              <span className="underline underline-offset-2 decoration-white/70">ModulrLabs</span>
-            </span>
-          </li>
           <li className="flex gap-2 rotate-on-hover-parent">
             <span className="ml-1 text-[0.65rem] rotate-on-hover">■</span>
             <span className="flex items-center gap-1">
@@ -98,7 +91,7 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
             </li>
             <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
               <span className="ml-1 text-[0.65rem]">↳</span>
-              <span>building particle simulation framework from scratch in C++</span>
+              <span>building chess engine in python from scratch</span>
             </li>
           </ul>
         </div>
@@ -117,8 +110,15 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
             <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
               <span className="ml-1 text-[0.65rem]">↳</span>
               <span>
-                Obsidian <span aria-hidden>🧪</span>{" "}
-                <span className="underline underline-offset-2 decoration-white/70 bold-underline">plugins</span>
+                Check out <span aria-hidden>🧪</span>{" "}
+                <a
+                  href="https://github.com/fashton28/silo"
+                  className="underline underline-offset-2 decoration-white/70 bold-underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Silo
+                </a>
               </span>
             </li>
             <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
