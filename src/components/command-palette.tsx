@@ -63,8 +63,8 @@ interface CommandPaletteProps {
 export function CommandPalette({ open, onOpenChange, items, onSelect }: CommandPaletteProps) {
   const [highlightedValue, setHighlightedValue] = useState("");
 
-  const navItems = useMemo(() => items.filter((i) => i.action === "scroll"), [items]);
-  const linkItems = useMemo(() => items.filter((i) => i.action !== "scroll"), [items]);
+  const navItems = useMemo(() => items.filter((i) => i.action === "scroll" || i.action === "route"), [items]);
+  const linkItems = useMemo(() => items.filter((i) => i.action !== "scroll" && i.action !== "route"), [items]);
 
   const highlightedItem = useMemo(() => {
     if (!highlightedValue) return navItems[0];

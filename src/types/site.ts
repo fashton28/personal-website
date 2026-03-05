@@ -27,7 +27,7 @@ export interface CommandActionItem {
   id: string;
   label: string;
   keywords: string[];
-  action: "scroll" | "link" | "copy-email";
+  action: "scroll" | "route" | "link" | "copy-email";
   sectionId?: string;
   href?: string;
   icon?: string;

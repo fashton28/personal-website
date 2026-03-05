@@ -44,6 +44,7 @@ export default function WritingPage() {
             >
               <Link
                 href={`/writing/${post.slug}`}
+                prefetch={true}
                 className="underline decoration-border/60 underline-offset-4 text-[#dce0e8] transition-colors hover:text-white"
               >
                 {post.title}

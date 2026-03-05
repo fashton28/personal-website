@@ -5,21 +5,12 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { CommandPalette } from "@/components/command-palette";
 import { headerSectionMeta, siteEmail } from "@/components/sections/header-section";
-import { projectsSectionMeta } from "@/components/sections/projects-section";
 import { socialLinks, socialsSectionMeta } from "@/components/sections/socials-section";
 import { footerSectionMeta } from "@/components/sections/footer-section";
 import type { CommandActionItem } from "@/types/site";
 
-const isTypingField = (element: EventTarget | null) => {
-  if (!(element instanceof HTMLElement)) return false;
-  if (element.isContentEditable) return true;
-  const tagName = element.tagName.toLowerCase();
-  return tagName === "input" || tagName === "textarea" || tagName === "select";
-};
-
 const baseSections = [
   headerSectionMeta,
-  projectsSectionMeta,
   socialsSectionMeta,
   footerSectionMeta,
 ];
@@ -35,7 +26,6 @@ export function GlobalCommand() {
       { icon: string; description: string; shortcut: string; label?: string }
     > = {
       header: { icon: "home", description: "About me and what I'm up to", shortcut: "H", label: "Go to Home" },
-      projects: { icon: "folder-kanban", description: "Work I've shipped", shortcut: "P" },
       socials: { icon: "users", description: "Find me online", shortcut: "S" },
       footer: { icon: "file-text", description: "The very bottom", shortcut: "F" },
     };
@@ -53,6 +43,29 @@ export function GlobalCommand() {
         shortcut: meta?.shortcut,
       };
     });
+
+    const routeItems: CommandActionItem[] = [
+      {
+        id: "route-projects",
+        label: "Go to Projects",
+        keywords: ["projects", "work"],
+        action: "route",
+        href: "/projects",
+        icon: "folder-kanban",
+        description: "Work I've shipped",
+        shortcut: "P",
+      },
+      {
+        id: "route-writing",
+        label: "Go to Writing",
+        keywords: ["writing", "blog", "posts"],
+        action: "route",
+        href: "/writing",
+        icon: "pen-tool",
+        description: "Blog posts and thoughts",
+        shortcut: "W",
+      },
+    ];
 
     const socialMeta: Record<string, { icon: string; shortcut: string }> = {
       "X.com": { icon: "x", shortcut: "X" },
@@ -89,7 +102,7 @@ export function GlobalCommand() {
       },
     ];
 
-    return [...sectionItems, ...linkItems];
+    return [...sectionItems, ...routeItems, ...linkItems];
   }, []);
 
   const handleCommandSelect = useCallback(
@@ -101,6 +114,10 @@ export function GlobalCommand() {
         } else {
           router.push(`/#${item.sectionId}`);
         }
+      }
+
+      if (item.action === "route" && item.href) {
+        router.push(item.href);
       }
 
       if (item.action === "link" && item.href) {
@@ -119,6 +136,11 @@ export function GlobalCommand() {
     },
     [pathname, router],
   );
+
+  useEffect(() => {
+    router.prefetch("/projects");
+    router.prefetch("/writing");
+  }, [router]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
