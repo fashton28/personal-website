@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Clock3 } from "lucide-react";
 import { CmdKButton } from "@/components/cmd-k-button";
 
-const EMAIL = "hi@jacobvos.com";
+const EMAIL = "fashton502@gmail.com";
 
 interface HeaderSectionProps {
   clockLabel: string;
