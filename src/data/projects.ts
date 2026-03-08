@@ -2,46 +2,31 @@ import type { ProjectItem } from "@/types/site";
 
 export const projects: ProjectItem[] = [
   {
-    id: "project-1",
-    title: "Autonomous Fleet OS",
-    summary:
-      "Real-time dashboard for managing a fleet of autonomous vehicles with live telemetry and route optimisation.",
-    tags: ["React", "WebSockets", "Maps"],
-    image: "/placeholders/car-1.svg",
-    anchorId: "project-1",
-  },
-  {
-    id: "project-2",
-    title: "Drive Analytics",
-    summary:
-      "ML-powered driving analytics platform that scores trips and surfaces insights for safer driving.",
-    tags: ["Python", "Next.js", "ML"],
-    image: "/placeholders/car-2.svg",
-    anchorId: "project-2",
-  },
-  {
     id: "project-3",
-    title: "Component Library",
+    title: "DeepShield",
     summary:
-      "Design system and component library with 40+ accessible, themeable primitives used across products.",
+      "Deep Fake detector for macOS. Built on top of NVDIA Hive's algorithm.",
     tags: ["TypeScript", "Storybook", "a11y"],
-    image: "/placeholders/car-3.svg",
+    image: "/placeholders/ds.png",
+    imageClassName: "object-contain scale-75",
+    href: "https://github.com/fashton28/DeepShield",
     anchorId: "project-3",
   },
   {
     id: "project-4",
-    title: "Route Planner",
+    title: "Horizon",
     summary:
-      "Interactive route planning tool with drag-and-drop waypoints, ETA predictions, and traffic-aware routing.",
-    tags: ["Mapbox", "React", "Node"],
-    image: "/placeholders/car-4.svg",
+      "Agents for Interview Preparation.Built for the AI presidential challenge",
+    tags: ["NextJS", "WebRTC", "FastAPI", "TS"],
+    image: "/placeholders/horizon.png",
+    href: "https://github.com/fashton28/Horizon",
     anchorId: "project-4",
   },
   {
     id: "project-5",
-    title: "Vision Pipeline",
+    title: "The Codepreneur Network",
     summary:
-      "Edge-deployed computer vision pipeline for real-time object detection and scene understanding.",
+      "an organization I founded with the goal of extending coding and entrepreneurship education across south america",
     tags: ["Python", "ONNX", "Edge"],
     image: "/placeholders/3.png",
     anchorId: "project-5",

@@ -4,6 +4,8 @@ export interface ProjectItem {
   summary: string;
   tags: string[];
   image: string;
+  imageClassName?: string;
+  href?: string;
   anchorId: string;
 }
 

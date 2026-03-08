@@ -18,6 +18,7 @@ export default function ProjectsPage() {
   const scaleRefs = useRef<(HTMLDivElement | null)[]>([]);
   const isJumping = useRef(false);
   const [mounted, setMounted] = useState(false);
+  const [centeredIndex, setCenteredIndex] = useState(COUNT);
 
   const updateScales = useCallback(() => {
     const container = scrollRef.current;
@@ -28,7 +29,11 @@ export default function ProjectsPage() {
     const cardWidth = window.innerWidth >= 640 ? 380 : 320;
     const falloff = cardWidth + 20;
 
-    for (const el of scaleRefs.current) {
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    for (let i = 0; i < scaleRefs.current.length; i++) {
+      const el = scaleRefs.current[i];
       if (!el) continue;
 
       const rect = el.getBoundingClientRect();
@@ -41,7 +46,14 @@ export default function ProjectsPage() {
 
       el.style.transform = `scale(${scale})`;
       el.style.opacity = String(opacity);
+
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = i;
+      }
     }
+
+    setCenteredIndex(closestIndex);
   }, []);
 
   const resetLoop = useCallback(() => {
@@ -78,6 +90,31 @@ export default function ProjectsPage() {
     updateScales();
   }, [updateScales]);
 
+  const handleCardClick = useCallback((index: number) => {
+    if (index === centeredIndex) {
+      const project = loopedProjects[index];
+      if (project?.href) {
+        window.open(project.href, "_blank", "noopener,noreferrer");
+      }
+      return;
+    }
+    // Scroll the clicked card to center
+    const el = scaleRefs.current[index];
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    }
+  }, [centeredIndex]);
+
+  const onWheel = useCallback((e: WheelEvent) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    // Convert vertical scroll to horizontal
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      container.scrollLeft += e.deltaY;
+    }
+  }, []);
+
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -94,14 +131,16 @@ export default function ProjectsPage() {
 
     container.addEventListener("scroll", onScroll, { passive: true });
     container.addEventListener("scrollend", resetLoop);
+    container.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("resize", updateScales);
 
     return () => {
       container.removeEventListener("scroll", onScroll);
       container.removeEventListener("scrollend", resetLoop);
+      container.removeEventListener("wheel", onWheel);
       window.removeEventListener("resize", updateScales);
     };
-  }, [updateScales, onScroll, resetLoop]);
+  }, [updateScales, onScroll, resetLoop, onWheel]);
 
   return (
     <div className="flex h-dvh flex-col overflow-hidden">
@@ -137,12 +176,16 @@ export default function ProjectsPage() {
           <div className="shrink-0 w-[max(0px,calc((100vw-320px)/2))] sm:w-[max(0px,calc((100vw-380px)/2))]" />
 
           {loopedProjects.map((project, i) => (
-            <div key={`${project.id}-${i}`} className="shrink-0 snap-center">
+            <div
+              key={`${project.id}-${i}`}
+              className="shrink-0 snap-center"
+              onClick={() => handleCardClick(i)}
+            >
               <div
                 ref={(el) => { scaleRefs.current[i] = el; }}
                 className="origin-center transition-[transform,opacity] duration-300 ease-out"
               >
-                <ProjectCard project={project} />
+                <ProjectCard project={project} isCentered={i === centeredIndex} />
               </div>
             </div>
           ))}
