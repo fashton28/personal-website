@@ -16,7 +16,7 @@ export function ProjectsSection() {
           aria-hidden
           className="absolute inset-0 opacity-60 [background-image:radial-gradient(#293041_1px,transparent_1px)] [background-size:10px_10px] group-hover:opacity-0"
         />
-        Cool stuff I&apos;ve built
+        See what I&apos;ve built
       </Link>
     </section>
 
