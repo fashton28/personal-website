@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 
@@ -37,16 +38,26 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         {/* Back link */}
         <Link
           href="/writing"
-          className="inline-flex items-center gap-1.5 text-white/50 transition-colors hover:text-white"
+          className="inline-flex items-center gap-1.5 text-muted transition-colors hover:text-text"
         >
           <ArrowLeft className="h-4 w-4" strokeWidth={1.5} />
           <span className="text-[0.8rem]">Writing</span>
         </Link>
 
         {/* Header */}
-        <header className="mt-6">
+        <header className="mt-6 flex flex-col items-center text-center">
+          {post.icon && (
+            <Image
+              src={post.icon}
+              alt=""
+              width={Number(post.iconSize) || 56}
+              height={Number(post.iconSize) || 56}
+              className="mb-4 object-contain"
+              aria-hidden
+            />
+          )}
           <p className="section-label">{formatDate(post.date)}</p>
-          <h1 className="mt-2 text-2xl font-semibold text-white">{post.title}</h1>
+          <h1 className="mt-2 text-3xl font-semibold text-text sm:text-4xl">{post.title}</h1>
         </header>
 
         {/* Article body */}

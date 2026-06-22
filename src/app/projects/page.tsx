@@ -149,14 +149,14 @@ export default function ProjectsPage() {
         <div className="mx-auto max-w-[780px]">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-white/50 transition-colors hover:text-white"
+            className="inline-flex items-center gap-1.5 text-muted transition-colors hover:text-text"
           >
             <ArrowLeft className="h-4 w-4" strokeWidth={1.5} />
             <span className="text-[0.8rem]">Home</span>
           </Link>
           <div className="mt-3">
             <p className="section-label">Work</p>
-            <h1 className="mt-1 text-xl font-semibold text-white">Projects</h1>
+            <h1 className="mt-1 text-xl font-semibold text-text">Projects</h1>
           </div>
         </div>
       </header>

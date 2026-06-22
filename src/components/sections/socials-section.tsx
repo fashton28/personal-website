@@ -54,7 +54,7 @@ export function SocialsSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.label}
-                className="group inline-flex items-center text-[#a4acbb] transition-colors hover:text-[#e6e9ef] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]"
+                className="group inline-flex items-center text-[color:var(--text-soft)] transition-colors hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]"
               >
                 <Icon className="h-5 w-5 shrink-0" />
                 <span className="inline-block max-w-0 overflow-hidden opacity-0 transition-all duration-200 ease-out group-hover:max-w-24 group-hover:opacity-100">

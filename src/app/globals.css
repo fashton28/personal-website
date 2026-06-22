@@ -10,6 +10,35 @@
   --color-muted: #7f8592;
   --color-accent: #2db6ff;
   --color-border: #1c2029;
+  /* Dotted background pattern (swapped per theme for light mode) */
+  --dot-color: #1c2029;
+  --dot-size: 22px;
+  /* Page text shades (tokenized so light mode stays readable) */
+  --text-body: #d5d9e3;
+  --text-soft: #b5bac7;
+  --text-kbd: #d9dde5;
+  --underline: rgba(255, 255, 255, 0.7);
+  /* Menu curtain — the opposite of the current site color */
+  --curtain-bg: #ffffff;
+  --curtain-text: #0a0b0e;
+}
+
+/* Light mode — flips colors via tokens, no image swap */
+:root[data-theme="light"] {
+  --color-bg: #f6f7f9;
+  --color-panel: #ffffff;
+  --color-panel-2: #eceef2;
+  --color-text: #16181d;
+  --color-muted: #5b616e;
+  --color-accent: #1e8cc7;
+  --color-border: #d7dae1;
+  --dot-color: #cdd2db;
+  --text-body: #2b2f38;
+  --text-soft: #474c57;
+  --text-kbd: #2b2f38;
+  --underline: rgba(20, 22, 28, 0.45);
+  --curtain-bg: #0a0b0e;
+  --curtain-text: #f6f7f9;
 }
 
 * {
@@ -24,17 +53,15 @@ body {
 }
 
 body {
-  background-color: #040506;
-  background-image:
-    linear-gradient(180deg, rgba(3, 4, 6, 0.58) 0%, rgba(3, 4, 6, 0.72) 100%),
-    url("/gradient.jpg");
+  background-color: var(--color-bg);
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  background-size: var(--dot-size) var(--dot-size);
   background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   background-attachment: fixed;
   color: var(--color-text);
   font-family: var(--font-sans), sans-serif;
   line-height: 1.45;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
@@ -52,7 +79,7 @@ a {
   font-size: 0.72rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #6f7480;
+  color: var(--color-muted);
 }
 
 @keyframes overlay-in {
@@ -82,7 +109,7 @@ a {
 
 /* Prose styles for blog posts */
 .prose {
-  color: #d5d9e3;
+  color: var(--text-body);
   line-height: 1.75;
   font-size: 1rem;
 }
@@ -90,7 +117,7 @@ a {
 .prose h2,
 .prose h3,
 .prose h4 {
-  color: #eceef3;
+  color: var(--color-text);
   font-weight: 600;
   margin-top: 2em;
   margin-bottom: 0.75em;
@@ -111,7 +138,7 @@ a {
   color: #5fc9ff;
 }
 .prose strong {
-  color: #eceef3;
+  color: var(--color-text);
 }
 .prose ul,
 .prose ol {
@@ -122,26 +149,26 @@ a {
   margin-bottom: 0.5em;
 }
 .prose li::marker {
-  color: #7f8592;
+  color: var(--color-muted);
 }
 .prose blockquote {
-  border-left: 3px solid #1c2029;
+  border-left: 3px solid var(--color-border);
   padding-left: 1em;
-  color: #7f8592;
+  color: var(--color-muted);
   font-style: italic;
   margin: 1.5em 0;
 }
 .prose code {
-  background: #0a0b0e;
-  border: 1px solid #1c2029;
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   padding: 0.15em 0.4em;
   font-size: 0.875em;
   font-family: var(--font-mono), monospace;
 }
 .prose pre {
-  background: #0a0b0e;
-  border: 1px solid #1c2029;
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 1em 1.25em;
   overflow-x: auto;
@@ -162,7 +189,7 @@ a {
 }
 .prose hr {
   border: none;
-  border-top: 1px solid #1c2029;
+  border-top: 1px solid var(--color-border);
   margin: 2em 0;
 }
 

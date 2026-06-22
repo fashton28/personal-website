@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { Clock3 } from "lucide-react";
-import { CmdKButton } from "@/components/cmd-k-button";
 
 const EMAIL = "fashton502@gmail.com";
 
@@ -43,10 +42,9 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
           </h1>
           <p className="mt-0.5 text-[0.92rem] text-muted">Engineer and entrepreneur</p>
         </div>
-        <CmdKButton />
       </div>
 
-      <div className="space-y-2.5 text-[0.85rem] leading-relaxed text-[#d5d9e3]">
+      <div className="space-y-2.5 text-[0.85rem] leading-relaxed text-[color:var(--text-body)]">
         <ul className="space-y-1">
           <li className="flex gap-2 rotate-on-hover-parent">
             <span className="ml-1 text-[0.65rem] rotate-on-hover">■</span>
@@ -61,14 +59,14 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
                   style={{ display: "inline", verticalAlign: "-0.2em" }}
                   draggable={false}
                 />
-                <span className="underline underline-offset-2 decoration-white/70">University of Pennsylvania</span>
+                <span className="underline underline-offset-2 decoration-[color:var(--underline)]">University of Pennsylvania</span>
               </span>
             </span>
           </li>
         </ul>
 
         <div className="space-y-1">
-          <p className="font-mono text-[0.78rem] italic text-[#b5bac7]">
+          <p className="font-mono text-[0.78rem] italic text-[color:var(--text-soft)]">
             • what I&apos;ve been building:
           </p>
           <ul className="space-y-0.5">
@@ -97,13 +95,13 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
         </div>
 
         <div className="space-y-1">
-          <p className="font-mono text-[0.78rem] italic text-[#b5bac7]">• previously:</p>
+          <p className="font-mono text-[0.78rem] italic text-[color:var(--text-soft)]">• previously:</p>
           <ul className="space-y-0.5">
             <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
               <span className="ml-1 text-[0.65rem]">↳</span>
               <span>
                 Founded <span aria-hidden>🛍</span>{" "}
-                <span className="underline underline-offset-2 decoration-white/70 bold-underline">marketing company </span>
+                <span className="underline underline-offset-2 decoration-[color:var(--underline)] bold-underline">marketing company </span>
                 at 15
               </span>
             </li>
@@ -113,7 +111,7 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
                 Check out <span aria-hidden>🧪</span>{" "}
                 <a
                   href="https://github.com/fashton28/silo"
-                  className="underline underline-offset-2 decoration-white/70 bold-underline"
+                  className="underline underline-offset-2 decoration-[color:var(--underline)] bold-underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -125,7 +123,7 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
               <span className="ml-1 text-[0.65rem]">↳</span>
               <span>
                 Research <span aria-hidden>🎓</span>{" "}
-                <span className="underline underline-offset-2 decoration-white/70 bold-underline">NASA ORBIT</span>
+                <span className="underline underline-offset-2 decoration-[color:var(--underline)] bold-underline">NASA ORBIT</span>
               </span>
             </li>
           </ul>
@@ -134,7 +132,7 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
 
       <p className="inline-flex items-center gap-2 text-[0.88rem] text-muted">
         Press
-        <kbd className="rounded-md border border-border bg-panel2 px-1.5 py-0.5 font-mono text-[0.65rem] text-[#d9dde5]">C</kbd>
+        <kbd className="rounded-md border border-border bg-panel2 px-1.5 py-0.5 font-mono text-[0.65rem] text-[color:var(--text-kbd)]">C</kbd>
         to copy my email
         <span className="text-accent">{copied ? "(copied)" : ""}</span>
       </p>

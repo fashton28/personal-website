@@ -6,7 +6,6 @@ export function FooterSection() {
       </h2>
 
       <div className="space-y-0.5 text-[0.88rem] text-muted">
-        <p>Built with Next.js </p>
         <p className="font-mono text-[0.78rem] uppercase tracking-[0.17em]">&copy; 2026 Fashton</p>
       </div>
     </footer>

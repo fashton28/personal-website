@@ -5,15 +5,10 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { CommandPalette } from "@/components/command-palette";
 import { headerSectionMeta, siteEmail } from "@/components/sections/header-section";
-import { socialLinks, socialsSectionMeta } from "@/components/sections/socials-section";
-import { footerSectionMeta } from "@/components/sections/footer-section";
+import { socialLinks } from "@/components/sections/socials-section";
 import type { CommandActionItem } from "@/types/site";
 
-const baseSections = [
-  headerSectionMeta,
-  socialsSectionMeta,
-  footerSectionMeta,
-];
+const baseSections = [headerSectionMeta];
 
 export function GlobalCommand() {
   const [open, setOpen] = useState(false);
@@ -26,8 +21,6 @@ export function GlobalCommand() {
       { icon: string; description: string; shortcut: string; label?: string }
     > = {
       header: { icon: "home", description: "About me and what I'm up to", shortcut: "H", label: "Go to Home" },
-      socials: { icon: "users", description: "Find me online", shortcut: "S" },
-      footer: { icon: "file-text", description: "The very bottom", shortcut: "F" },
     };
 
     const sectionItems: CommandActionItem[] = baseSections.map((section) => {

@@ -12,6 +12,10 @@ export interface PostMeta {
   date: string;
   summary?: string;
   image?: string;
+  /** Path (relative to /public) of an icon shown above the post title, e.g. "/penn.png". */
+  icon?: string;
+  /** Rendered icon size in px (width & height). Defaults to 56 when omitted. */
+  iconSize?: number;
 }
 
 export interface Post extends PostMeta {
@@ -33,6 +37,8 @@ export function getAllPostsMeta(): PostMeta[] {
       date: data.date,
       summary: data.summary,
       image: data.image,
+      icon: data.icon,
+      iconSize: data.iconSize,
     };
   });
 
@@ -60,6 +66,8 @@ export async function getPostBySlug(slug: string): Promise<Post> {
     date: data.date,
     summary: data.summary,
     image: data.image,
+    icon: data.icon,
+    iconSize: data.iconSize,
     contentHtml,
   };
 }
