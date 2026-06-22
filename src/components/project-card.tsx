@@ -9,7 +9,7 @@ interface ProjectCardProps {
 export function ProjectCard({ project, isCentered }: ProjectCardProps) {
   return (
     <div
-      className={`relative block w-[320px] h-[420px] sm:w-[380px] sm:h-[480px] shrink-0 snap-center rounded-[22px] overflow-hidden bg-[#080a0f] shadow-[0px_32px_64px_-16px_#0000004c,0px_16px_32px_-8px_#0000004c,0px_8px_16px_-4px_#0000003d,0px_4px_8px_-2px_#0000003d,0px_-8px_16px_-1px_#00000029,0px_2px_4px_-1px_#0000003d,0px_0px_0px_1px_#000000,inset_0px_0px_0px_1px_#ffffff14,inset_0px_1px_0px_#ffffff33] transition-transform duration-200 hover:-translate-y-1 ${isCentered && project.href ? "cursor-pointer" : ""}`}
+      className={`relative block w-[320px] h-[min(420px,72dvh)] sm:w-[380px] sm:h-[min(480px,80dvh)] shrink-0 snap-center rounded-[22px] overflow-hidden bg-[#080a0f] shadow-[0px_32px_64px_-16px_#0000004c,0px_16px_32px_-8px_#0000004c,0px_8px_16px_-4px_#0000003d,0px_4px_8px_-2px_#0000003d,0px_-8px_16px_-1px_#00000029,0px_2px_4px_-1px_#0000003d,0px_0px_0px_1px_#000000,inset_0px_0px_0px_1px_#ffffff14,inset_0px_1px_0px_#ffffff33] transition-transform duration-200 hover:-translate-y-1 ${isCentered && project.href ? "cursor-pointer" : ""}`}
     >
       {/* Cover image — top 60% */}
       <div className="relative h-[60%] w-full">

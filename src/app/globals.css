@@ -54,14 +54,25 @@ body {
 
 body {
   background-color: var(--color-bg);
-  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
-  background-size: var(--dot-size) var(--dot-size);
-  background-position: center;
-  background-attachment: fixed;
   color: var(--color-text);
   font-family: var(--font-sans), sans-serif;
   line-height: 1.45;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dotted background pinned to the viewport so it always covers the full
+   (dynamic) height — including mobile, where a `background-attachment: fixed`
+   on <body> leaves black/white gaps as the URL bar shows/hides. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--color-bg);
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  background-size: var(--dot-size) var(--dot-size);
+  background-position: center;
+  transition: background-color 0.3s ease;
 }
 
 a {

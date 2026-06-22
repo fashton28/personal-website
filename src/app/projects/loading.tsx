@@ -14,7 +14,7 @@ export default function ProjectsLoading() {
 
       {/* Card placeholder */}
       <div className="flex flex-1 items-center justify-center">
-        <div className="h-[400px] w-[320px] animate-pulse rounded-2xl bg-white/5 sm:w-[380px]" />
+        <div className="h-[min(420px,72dvh)] w-[320px] animate-pulse rounded-2xl bg-white/5 sm:h-[min(480px,80dvh)] sm:w-[380px]" />
       </div>
     </div>
   );
