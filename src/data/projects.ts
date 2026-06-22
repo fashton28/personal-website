@@ -11,6 +11,8 @@ export const projects: ProjectItem[] = [
     imageClassName: "object-contain scale-75",
     href: "https://github.com/fashton28/DeepShield",
     anchorId: "project-3",
+    badge: "2025 · macOS",
+    accent: "#38b6ff",
   },
   {
     id: "project-4",
@@ -21,6 +23,8 @@ export const projects: ProjectItem[] = [
     image: "/placeholders/horizon.png",
     href: "https://github.com/fashton28/Horizon",
     anchorId: "project-4",
+    badge: "2025 · Hackathon",
+    accent: "#ff7a18",
   },
   {
     id: "project-5",
@@ -30,5 +34,7 @@ export const projects: ProjectItem[] = [
     tags: ["Python", "ONNX", "Edge"],
     image: "/placeholders/3.png",
     anchorId: "project-5",
+    badge: "Founder · Org",
+    accent: "#ffffff",
   },
 ];

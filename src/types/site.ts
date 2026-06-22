@@ -7,6 +7,10 @@ export interface ProjectItem {
   imageClassName?: string;
   href?: string;
   anchorId: string;
+  /** Small status/year label shown above the title, e.g. "2025 · Hackathon". Optional. */
+  badge?: string;
+  /** Accent color (hex) for this project's "View project" button, ideally matching its imagery. */
+  accent?: string;
 }
 
 export interface WorkUpdateItem {
