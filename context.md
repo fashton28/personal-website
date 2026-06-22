@@ -41,14 +41,15 @@ Scripts: `npm run dev` / `build` / `start` / `lint`. Deploys to **Vercel** (note
 | `/writing/[slug]` | `src/app/writing/[slug]/page.tsx` | server, `generateStaticParams` | Renders a single post's HTML. |
 
 Each route has a `loading.tsx` skeleton. `layout.tsx` wraps everything and mounts the global
-`<GlobalCommand />` (command palette) and `<BottomNav />` on every page.
+`<HeaderControls />` (fixed top-right search/theme/menu cluster) and `<GlobalCommand />` (command
+palette) on every page. (The old `<BottomNav />` was removed 2026-06-22.)
 
 ## 4. Architecture & key concepts
 
 ### Layout shell
 `src/app/layout.tsx` loads Google fonts (Manrope = sans, IBM Plex Mono = mono) as CSS vars, sets
-global metadata, and always renders `GlobalCommand` + `BottomNav`. The page background (dark gradient
-image `public/gradient.jpg`) and design tokens are set in `globals.css` `:root` / `body`.
+global metadata, runs the no-flash theme script, and always renders `HeaderControls` + `GlobalCommand`.
+The page background (CSS dotted pattern) and design tokens are set in `globals.css` `:root` / `body`.
 
 ### Home page sections (`src/components/sections/`)
 - `header-section.tsx` — the main bio/hero. **Exports `siteEmail` (the `EMAIL` const) and `headerSectionMeta`.** Hardcoded email here is `fashton502@gmail.com`. Contains inline `<style jsx>` and inline color styles (`#ff66c4` pink accents).
@@ -111,6 +112,7 @@ background is on `body`. `prefers-reduced-motion` is respected globally.
 
 > Append an entry whenever you make a non-obvious change. Format: `YYYY-MM-DD — what & why`.
 
+- **2026-06-22** — Removed the bottom floating nav. Deleted `src/components/bottom-nav.tsx` and its `<BottomNav />` render + import in `layout.tsx`. Navigation is now handled by the top-right menu curtain (`MenuCurtain`) in `HeaderControls`. (Note: §3 "Layout shell" and §4 still mention BottomNav — historical; it no longer exists.)
 - **2026-06-22** — Blog **post-page header** redesign + per-post icon. Added two optional frontmatter fields, parsed in `src/lib/posts.ts` (`PostMeta`/`Post`): `icon` (path under `/public`, e.g. `/penn.png`) and `iconSize` (px, default 56). On the post page (`src/app/writing/[slug]/page.tsx`) the header is now centered (`flex flex-col items-center text-center`), the title enlarged (`text-3xl sm:text-4xl`), and the `icon` renders via `next/image` above the title at `iconSize` (coerced with `Number(...) || 56`). Demoed by adding `icon: "/penn.png"` + `iconSize: 64` to `posts/lessons-2025.md`. Icons are NOT shown on the `/writing` list yet — easy follow-up if wanted. To add an icon to a post: drop the image in `public/` and set `icon`/`iconSize` in the post's frontmatter.
 - **2026-06-22** — Made the top-right controls (search / theme / menu) **global across all routes**. Extracted them into `src/components/header-controls.tsx` and render `<HeaderControls />` once in `layout.tsx`; removed the inline copy (and its imports) from `header-section.tsx`. `HeaderControls` is a `position: fixed` cluster (`z-40`) aligned to the content column (`max-w-[780px]` + same page padding as the home `<main>`) with `pointer-events-none` on the wrapper / `pointer-events-auto` on the buttons so it doesn't block the page. Chose this over putting raw buttons in layout to avoid home-page duplication and keep alignment consistent with content. Trade-off: framer-motion (via `MenuCurtain`) now ships on every route.
 - **2026-06-22** — Trimmed the Cmd+K palette: removed the "Go to Socials" and "Go to Footer" entries. In `global-command.tsx`, `baseSections` is now just `[headerSectionMeta]` (only "Go to Home" remains under Navigation); dropped the now-unused `socialsSectionMeta`/`footerSectionMeta` imports and their `sectionMeta` records. `socialLinks` is still imported (used for the Links group).

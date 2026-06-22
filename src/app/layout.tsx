@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Manrope } from "next/font/google";
 
-import BottomNav from "@/components/bottom-nav";
 import { GlobalCommand } from "@/components/global-command";
 import { HeaderControls } from "@/components/header-controls";
 import "./globals.css";
@@ -43,7 +42,6 @@ export default function RootLayout({
         {children}
         <HeaderControls />
         <GlobalCommand />
-        <BottomNav />
       </body>
     </html>
   );
