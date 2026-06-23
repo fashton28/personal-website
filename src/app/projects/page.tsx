@@ -106,20 +106,19 @@ export default function ProjectsPage() {
               }}
               className="relative flex h-dvh snap-start items-center justify-center overflow-hidden"
             >
-              {/* Ambient bloom — a blurred, oversized copy of the project's own image */}
-              <div aria-hidden className="absolute inset-0 z-0">
-                <Image
-                  src={project.image}
-                  alt=""
-                  fill
-                  priority={i === 0}
-                  className={`scale-150 object-cover blur-[90px] transition-transform duration-[1200ms] ease-out ${
-                    isActive ? "opacity-50" : "opacity-30"
-                  }`}
+              {/* Ambient bloom — a GPU-cheap radial glow in the project's accent color.
+                  (Replaces a full-screen blur(90px) image, which stalled mobile GPUs and
+                  froze the menu-curtain animation mid-slide on navigation.) */}
+              <div aria-hidden className="absolute inset-0 z-0 overflow-hidden">
+                <div
+                  className="absolute left-1/2 top-1/2 h-[130vmin] w-[130vmin] -translate-x-1/2 -translate-y-1/2 rounded-full transition-opacity duration-700 ease-out"
+                  style={{
+                    background: `radial-gradient(circle, ${accent} 0%, transparent 68%)`,
+                    opacity: isActive ? 0.3 : 0.12,
+                  }}
                 />
                 {/* Vignette to keep text legible and edges deep */}
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,var(--color-bg)_82%)]" />
-                <div className="absolute inset-0 bg-[var(--color-bg)]/35" />
               </div>
 
               {/* Content */}
@@ -137,6 +136,7 @@ export default function ProjectsPage() {
                       src={project.image}
                       alt={project.title}
                       fill
+                      priority={i === 0}
                       sizes="(max-width: 1040px) 100vw, 520px"
                       className={project.imageClassName ?? "object-cover"}
                     />
