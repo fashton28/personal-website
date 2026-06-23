@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import {
   Box,
   ExternalLink,
@@ -63,13 +63,29 @@ interface CommandPaletteProps {
 export function CommandPalette({ open, onOpenChange, items, onSelect }: CommandPaletteProps) {
   const [highlightedValue, setHighlightedValue] = useState("");
 
-  const navItems = useMemo(() => items.filter((i) => i.action === "scroll" || i.action === "route"), [items]);
-  const linkItems = useMemo(() => items.filter((i) => i.action !== "scroll" && i.action !== "route"), [items]);
+  // Group items by their `group` heading, preserving a preferred order.
+  const groups = useMemo(() => {
+    const order = ["Projects", "Writing", "Links"];
+    const byGroup = new Map<string, CommandActionItem[]>();
+    for (const item of items) {
+      const key = item.group ?? "More";
+      if (!byGroup.has(key)) byGroup.set(key, []);
+      byGroup.get(key)!.push(item);
+    }
+    const ordered: Array<[string, CommandActionItem[]]> = [];
+    for (const key of order) {
+      if (byGroup.has(key)) ordered.push([key, byGroup.get(key)!]);
+    }
+    for (const [key, list] of byGroup) {
+      if (!order.includes(key)) ordered.push([key, list]);
+    }
+    return ordered;
+  }, [items]);
 
   const highlightedItem = useMemo(() => {
-    if (!highlightedValue) return navItems[0];
+    if (!highlightedValue) return items[0];
     return items.find((i) => itemValue(i).toLowerCase() === highlightedValue.toLowerCase());
-  }, [items, navItems, highlightedValue]);
+  }, [items, highlightedValue]);
 
   const PreviewIcon = getIcon(highlightedItem?.icon);
 
@@ -93,46 +109,32 @@ export function CommandPalette({ open, onOpenChange, items, onSelect }: CommandP
             </div>
           </div>
 
-          <CommandInput placeholder="Search for actions..." />
+          <CommandInput placeholder="Search projects, writing…" />
 
           <CommandList>
             <CommandEmpty>No matches found.</CommandEmpty>
 
-            <CommandGroup heading="Navigation">
-              {navItems.map((item) => {
-                const Icon = getIcon(item.icon);
-                return (
-                  <CommandItem
-                    key={item.id}
-                    value={itemValue(item)}
-                    onSelect={() => onSelect(item)}
-                  >
-                    <Icon className="h-4 w-4 text-white/40" />
-                    <span>{item.label}</span>
-                    {item.shortcut && <CommandShortcut>{item.shortcut}</CommandShortcut>}
-                  </CommandItem>
-                );
-              })}
-            </CommandGroup>
-
-            <CommandSeparator />
-
-            <CommandGroup heading="Links">
-              {linkItems.map((item) => {
-                const Icon = getIcon(item.icon);
-                return (
-                  <CommandItem
-                    key={item.id}
-                    value={itemValue(item)}
-                    onSelect={() => onSelect(item)}
-                  >
-                    <Icon className="h-4 w-4 text-white/40" />
-                    <span>{item.label}</span>
-                    {item.shortcut && <CommandShortcut>{item.shortcut}</CommandShortcut>}
-                  </CommandItem>
-                );
-              })}
-            </CommandGroup>
+            {groups.map(([heading, groupItems], groupIndex) => (
+              <Fragment key={heading}>
+                {groupIndex > 0 && <CommandSeparator />}
+                <CommandGroup heading={heading}>
+                  {groupItems.map((item) => {
+                    const Icon = getIcon(item.icon);
+                    return (
+                      <CommandItem
+                        key={item.id}
+                        value={itemValue(item)}
+                        onSelect={() => onSelect(item)}
+                      >
+                        <Icon className="h-4 w-4 text-white/40" />
+                        <span className="truncate">{item.label}</span>
+                        {item.shortcut && <CommandShortcut>{item.shortcut}</CommandShortcut>}
+                      </CommandItem>
+                    );
+                  })}
+                </CommandGroup>
+              </Fragment>
+            ))}
           </CommandList>
 
           {/* Footer */}

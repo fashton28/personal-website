@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, Manrope } from "next/font/google";
 
 import { GlobalCommand } from "@/components/global-command";
 import { HeaderControls } from "@/components/header-controls";
+import { getAllPostsMeta } from "@/lib/posts";
 import "./globals.css";
 
 const sans = Manrope({
@@ -28,6 +29,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const posts = getAllPostsMeta();
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -41,7 +43,7 @@ export default function RootLayout({
       <body className={`${sans.variable} ${mono.variable} antialiased`}>
         {children}
         <HeaderControls />
-        <GlobalCommand />
+        <GlobalCommand posts={posts} />
       </body>
     </html>
   );

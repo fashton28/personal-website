@@ -1,114 +1,79 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { CommandPalette } from "@/components/command-palette";
-import { headerSectionMeta, siteEmail } from "@/components/sections/header-section";
+import { siteEmail } from "@/components/sections/header-section";
 import { socialLinks } from "@/components/sections/socials-section";
+import { projects } from "@/data/projects";
+import type { PostMeta } from "@/lib/posts";
 import type { CommandActionItem } from "@/types/site";
 
-const baseSections = [headerSectionMeta];
+const socialMeta: Record<string, { icon: string }> = {
+  "X.com": { icon: "x" },
+  GitHub: { icon: "github" },
+  LinkedIn: { icon: "linkedin" },
+};
 
-export function GlobalCommand() {
+export function GlobalCommand({ posts }: { posts: PostMeta[] }) {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
   const router = useRouter();
 
   const commandItems = useMemo<CommandActionItem[]>(() => {
-    const sectionMeta: Record<
-      string,
-      { icon: string; description: string; shortcut: string; label?: string }
-    > = {
-      header: { icon: "home", description: "About me and what I'm up to", shortcut: "H", label: "Go to Home" },
-    };
+    // Projects — searchable by title, summary, and tech tags.
+    const projectItems: CommandActionItem[] = projects.map((project) => ({
+      id: `project-${project.id}`,
+      label: project.title,
+      keywords: [...project.tags, project.summary, "project", "work"],
+      action: "route",
+      href: `/projects#${project.anchorId}`,
+      icon: "folder-kanban",
+      description: project.summary,
+      group: "Projects",
+    }));
 
-    const sectionItems: CommandActionItem[] = baseSections.map((section) => {
-      const meta = sectionMeta[section.id];
-      return {
-        id: `section-${section.id}`,
-        label: meta?.label ?? `Go to ${section.title}`,
-        keywords: ["section", section.id],
-        action: "scroll",
-        sectionId: section.id,
-        icon: meta?.icon,
-        description: meta?.description,
-        shortcut: meta?.shortcut,
-      };
-    });
+    // Writing — searchable by title and summary.
+    const writingItems: CommandActionItem[] = posts.map((post) => ({
+      id: `post-${post.slug}`,
+      label: post.title,
+      keywords: ["writing", "blog", "post", post.summary ?? ""],
+      action: "route",
+      href: `/writing/${post.slug}`,
+      icon: "file-text",
+      description: post.summary ?? post.date,
+      group: "Writing",
+    }));
 
-    const routeItems: CommandActionItem[] = [
-      {
-        id: "route-projects",
-        label: "Go to Projects",
-        keywords: ["projects", "work"],
-        action: "route",
-        href: "/projects",
-        icon: "folder-kanban",
-        description: "Work I've shipped",
-        shortcut: "P",
-      },
-      {
-        id: "route-writing",
-        label: "Go to Writing",
-        keywords: ["writing", "blog", "posts"],
-        action: "route",
-        href: "/writing",
-        icon: "pen-tool",
-        description: "Blog posts and thoughts",
-        shortcut: "W",
-      },
-    ];
-
-    const socialMeta: Record<string, { icon: string; shortcut: string }> = {
-      "X.com": { icon: "x", shortcut: "X" },
-      GitHub: { icon: "github", shortcut: "G" },
-      LinkedIn: { icon: "linkedin", shortcut: "L" },
-    };
-
+    // Links — socials + email (ways to reach me).
     const socialItems: CommandActionItem[] = socialLinks
       .filter((social) => social.id !== "social-email")
-      .map((social) => {
-        const meta = socialMeta[social.label];
-        return {
-          id: `social-${social.id}`,
-          label: social.label === "X.com" ? "X Profile" : `${social.label} Profile`,
-          keywords: [social.value, "social", "contact"],
-          action: "link",
-          href: social.href,
-          icon: meta?.icon ?? "external-link",
-          shortcut: meta?.shortcut,
-          description: social.value,
-        };
-      });
+      .map((social) => ({
+        id: `social-${social.id}`,
+        label: social.label === "X.com" ? "X" : social.label,
+        keywords: [social.value, "social", "contact", social.label],
+        action: "link",
+        href: social.href,
+        icon: socialMeta[social.label]?.icon ?? "external-link",
+        description: social.href.replace(/^https?:\/\/(www\.)?/, ""),
+        group: "Links",
+      }));
 
-    const linkItems: CommandActionItem[] = [
-      ...socialItems,
-      {
-        id: "copy-email",
-        label: "Email",
-        keywords: ["mail", "contact", siteEmail],
-        action: "copy-email",
-        icon: "mail",
-        shortcut: "E",
-        description: siteEmail,
-      },
-    ];
+    const emailItem: CommandActionItem = {
+      id: "copy-email",
+      label: "Copy email",
+      keywords: ["mail", "contact", "email", siteEmail],
+      action: "copy-email",
+      icon: "mail",
+      description: siteEmail,
+      group: "Links",
+    };
 
-    return [...sectionItems, ...routeItems, ...linkItems];
-  }, []);
+    return [...projectItems, ...writingItems, ...socialItems, emailItem];
+  }, [posts]);
 
   const handleCommandSelect = useCallback(
     async (item: CommandActionItem) => {
-      if (item.action === "scroll") {
-        if (pathname === "/") {
-          const element = document.getElementById(item.sectionId ?? "");
-          element?.scrollIntoView({ behavior: "smooth", block: "start" });
-        } else {
-          router.push(`/#${item.sectionId}`);
-        }
-      }
-
       if (item.action === "route" && item.href) {
         router.push(item.href);
       }
@@ -127,7 +92,7 @@ export function GlobalCommand() {
 
       setOpen(false);
     },
-    [pathname, router],
+    [router],
   );
 
   useEffect(() => {
@@ -154,13 +119,11 @@ export function GlobalCommand() {
   }, []);
 
   return (
-    <>
-      <CommandPalette
-        open={open}
-        onOpenChange={setOpen}
-        items={commandItems}
-        onSelect={handleCommandSelect}
-      />
-    </>
+    <CommandPalette
+      open={open}
+      onOpenChange={setOpen}
+      items={commandItems}
+      onSelect={handleCommandSelect}
+    />
   );
 }

@@ -36,6 +36,22 @@ export default function ProjectsPage() {
     return () => observer.disconnect();
   }, []);
 
+  // Deep-link support: /projects#<anchorId> (e.g. from the command palette) jumps to that panel.
+  useEffect(() => {
+    const scrollToHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (!hash) return;
+      const index = projects.findIndex((p) => p.anchorId === hash);
+      if (index >= 0) {
+        panelRefs.current[index]?.scrollIntoView({ behavior: "auto", block: "start" });
+        setActive(index);
+      }
+    };
+    scrollToHash();
+    window.addEventListener("hashchange", scrollToHash);
+    return () => window.removeEventListener("hashchange", scrollToHash);
+  }, []);
+
   const goTo = useCallback((index: number) => {
     const clamped = Math.max(0, Math.min(projects.length - 1, index));
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

@@ -39,4 +39,6 @@ export interface CommandActionItem {
   icon?: string;
   description?: string;
   shortcut?: string;
+  /** Heading the item is shown under in the palette, e.g. "Projects" | "Writing" | "Links". */
+  group?: string;
 }
