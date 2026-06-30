@@ -15,18 +15,21 @@ Before I went down the rabbit hole, it looked like this:
 - Open Claude Code
 - Use plan mode, create a set of tasks, and let a single agent work through each one
 - Review the diffs carefully and push code to production
-Simple enough—a huge task list for the project. The result? A bloated context window and an agent that progressively produced worse code.
+
+Simple enough - a huge task list for the project. The result? A bloated context window and an agent that progressively produced worse code.
  
 I wanted to change my approach, so I decided to prioritize three things. So far, I think I've succeeded in making my workflow:
  
 1. **Keyboard-centric.** Believe it or not, mastering your keyboard gets you into flow much faster—at least it did for me.
 2. **Terminal-centric.** A lot of the tools I use are terminal-native, and I wouldn't want it any other way. Everything can be done through a terminal, and I genuinely think it's the best way to run and manage your agents.
 3. **Active development.** I always want to be part of the development workflow. Unless I'm unfamiliar with the tools I'm using to build a project, I generally avoid delegating architectural decisions to my agents.
+
 Previously, writing well-structured code (and getting the architecture right) was my main bottleneck. That slowdown has largely been solved by:
  
 - PR-reviewing tools like CodeRabbit
 - Open-source alternatives like the ones I'll talk about below
 - Fundamentally, having agents with a fresh context window review your output, test it, and push it into a clean PR
+
 I want control over the stack, the tools, and the code layout. If I have to dive into the codebase manually, it's much easier to understand where everything is and how it fits together.
  
 With that said, let's dive into what you came here for. I'll split this post into five components:
@@ -45,6 +48,7 @@ With that said, let's dive into what you came here for. I'll split this post int
     - Native tools + useful repos with looping setups
 5. Working with multiple agents
     - Git worktrees + Treehouse tooling
+
 Ultimately, every technique presented here is the result of hours of iteration and a focus on engineering principles that prioritize scalability and production-ready code.
  
 ## The Foundation
@@ -63,6 +67,7 @@ You can do this in two ways:
  
 - A global agents.md / claude.md file
 - Local files
+
 How you set up these files is up to you, but I generally like keeping my global files as lightweight as possible, with minimal directions. Bloated global files just end up burning tokens.
  
 For example, you might include:
@@ -70,7 +75,8 @@ For example, you might include:
 - How to write commit messages
 - Directions like being picky about UI
 - Reminders to run tests once a feature is done
-My local files contain guidelines I define before writing any code, but a big part of them often becomes an error log—where the agent logs its own mistakes and ensures it doesn't repeat them. For that reason, they tend to be more verbose.
+
+My local files contain guidelines I define before writing any code, but a big part of them often becomes an error log - where the agent logs its own mistakes and ensures it doesn't repeat them. For that reason, they tend to be more verbose.
  
 To avoid an overly heavy local claude.md file, I analyze which directions can be turned into a skill. For instance, if something isn't a set of rules but rather an action the agent can perform given a condition, I turn it into a ***skill***.
  
@@ -172,6 +178,7 @@ With the rise of loops and all the hype around them (yes, it does feel like 2020
 - Research
 - Improving end-to-end coverage
 - Experimenting with different hypotheses
+
 ## Running Parallel Agents
  
 If you want to run agents in parallel—and you have no previous experience with git—the obvious answer is to spin up another terminal pane and start a Claude session… right?
