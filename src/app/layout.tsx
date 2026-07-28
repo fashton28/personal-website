@@ -20,7 +20,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fabian Ashton",
+  title: "fashton",
   description: "deeply excited for the future of technology"
 };
 
