@@ -73,7 +73,7 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
             <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
               <span className="ml-1 text-[0.65rem]">↳</span>
               <span>
-                worked on <span className="font-semibold" style={{ color: "#ff66c4", fontWeight: "bold" }}><b>Agents for interview prep</b></span> (Built for the <i>AI Presidential Challenge</i>)
+                worked on <span className="font-semibold" style={{ color: "#ff66c4", fontWeight: "bold" }}><b>agents for interview prep</b></span> (Built for the <i>AI Presidential Challenge</i>)
               </span>
             </li>
             <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
@@ -89,7 +89,7 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
             </li>
             <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
               <span className="ml-1 text-[0.65rem]">↳</span>
-              <span></span>
+              <span>working on infra for agents and <a href="https://tryhubble.org/" target="_blank" className="underline">edtech</a></span>
             </li>
           </ul>
         </div>
@@ -110,12 +110,12 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
               <span>
                 Check out <span aria-hidden>🧪</span>{" "}
                 <a
-                  href="https://github.com/fashton28/silo"
+                  href="https://github.com/fashton28/mux"
                   className="underline underline-offset-2 decoration-[color:var(--underline)] bold-underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Silo
+                  Mux
                 </a>
               </span>
             </li>
