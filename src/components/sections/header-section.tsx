@@ -40,7 +40,7 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
           >
             Fabian Ashton
           </h1>
-          <p className="mt-0.5 text-[0.92rem] text-muted">Engineer and entrepreneur</p>
+          <p className="mt-0.5 text-[0.92rem] text-muted">rising freshman</p>
         </div>
       </div>
 
@@ -73,7 +73,7 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
             <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
               <span className="ml-1 text-[0.65rem]">↳</span>
               <span>
-                created the <span className="font-semibold" style={{ color: "#ff66c4", fontWeight: "bold" }}><b>Cursor for interview prep</b></span> (Built for the <i>AI Presidential Challenge</i>)
+                worked on <span className="font-semibold" style={{ color: "#ff66c4", fontWeight: "bold" }}><b>Agents for interview prep</b></span> (Built for the <i>AI Presidential Challenge</i>)
               </span>
             </li>
             <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
@@ -89,7 +89,7 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
             </li>
             <li className="flex gap-2 pl-3 transition-transform duration-200 hover:translate-x-1">
               <span className="ml-1 text-[0.65rem]">↳</span>
-              <span>building chess engine in python from scratch</span>
+              <span></span>
             </li>
           </ul>
         </div>
