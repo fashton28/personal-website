@@ -2,19 +2,6 @@ import type { ProjectItem } from "@/types/site";
 
 export const projects: ProjectItem[] = [
   {
-    id: "project-3",
-    title: "DeepShield",
-    summary:
-      "Deep Fake detector for macOS. Built on top of NVDIA Hive's algorithm.",
-    tags: ["TypeScript", "Storybook", "a11y"],
-    image: "/placeholders/ds.png",
-    imageClassName: "object-contain scale-75",
-    href: "https://github.com/fashton28/DeepShield",
-    anchorId: "project-3",
-    badge: "2025 · macOS",
-    accent: "#38b6ff",
-  },
-  {
     id: "project-4",
     title: "Horizon",
     summary:
