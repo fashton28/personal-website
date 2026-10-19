@@ -40,7 +40,7 @@ export function HeaderSection({ clockLabel, copied }: HeaderSectionProps) {
           >
             Fabian Ashton
           </h1>
-          <p className="mt-0.5 text-[0.92rem] text-muted">rising freshman</p>
+          <p className="mt-0.5 text-[0.92rem] text-muted">freshman</p>
         </div>
       </div>
 
