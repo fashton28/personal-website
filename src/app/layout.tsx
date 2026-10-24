@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Manrope } from "next/font/google";
+import { EB_Garamond, IBM_Plex_Mono, Manrope } from "next/font/google";
 
 import { GlobalCommand } from "@/components/global-command";
 import { HeaderControls } from "@/components/header-controls";
@@ -17,6 +17,15 @@ const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500"]
+});
+
+// Display serif for the menu curtain; ships a true italic for the hover state.
+const serif = EB_Garamond({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500"],
+  style: ["normal", "italic"]
 });
 
 export const metadata: Metadata = {
@@ -40,7 +49,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${sans.variable} ${mono.variable} antialiased`}>
+      <body className={`${sans.variable} ${mono.variable} ${serif.variable} antialiased`}>
         {children}
         <HeaderControls />
         <GlobalCommand posts={posts} />

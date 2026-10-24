@@ -59,7 +59,7 @@ export function MenuCurtain() {
               </button>
             </div>
 
-            <nav className="flex flex-1 flex-col items-center justify-center gap-6 sm:gap-8">
+            <nav className="flex flex-1 flex-col items-center justify-center gap-2 px-5 pb-20 font-serif sm:items-start sm:gap-4 sm:px-9">
               {links.map((link, index) => (
                 <motion.div
                   key={link.href}
@@ -68,12 +68,19 @@ export function MenuCurtain() {
                   exit={{ opacity: 0, y: 24 }}
                   transition={{ delay: 0.18 + index * 0.08, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 >
+                  {/* Mobile: centered, with pr-8 mirroring the number slot (w-6 + gap-2) so the word itself sits on the center line.
+                      sm+: left-aligned so the wider italic face only grows rightward on hover - no jitter. */}
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="text-4xl font-semibold tracking-tight transition-opacity duration-200 hover:opacity-60 sm:text-6xl"
+                    className="group inline-flex items-baseline gap-2 pr-8 outline-none sm:gap-3 sm:pr-0"
                   >
-                    {link.label}
+                    <span aria-hidden className="w-6 text-base italic opacity-80 sm:w-8 sm:text-2xl">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-6xl font-medium leading-[1.1] sm:text-8xl group-hover:italic group-focus-visible:italic">
+                      {link.label}
+                    </span>
                   </Link>
                 </motion.div>
               ))}
