@@ -166,6 +166,15 @@ a {
 .prose ul ul {
   list-style-type: circle;
 }
+.prose ol ol {
+  list-style-type: lower-alpha;
+}
+.prose ol ol ol {
+  list-style-type: lower-roman;
+}
+.prose ol ol ol ol {
+  list-style-type: decimal;
+}
 .prose li {
   margin-bottom: 0.5em;
 }
